@@ -38,5 +38,15 @@ namespace ReqnrollTests.StepDefinitions
         {
             com.HoverAndAddTocart();
         }
+        [Then(@"I Remove the product from cart")]
+        public void ThenIRemoveTheProductFromCart()
+        {
+            com.RemoveItemFromCart();
+        }
+        [Then(@"I Logout from website")]
+        public void ThenILogoutFromWebsite()
+        {
+            com.Logout();
+        }
     }
 }
