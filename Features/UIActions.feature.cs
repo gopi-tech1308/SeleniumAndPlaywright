@@ -20,16 +20,16 @@ namespace SeleniumAndPlaywright.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Reqnroll", "2.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Login")]
+    [NUnit.Framework.DescriptionAttribute("UI Feature")]
     [NUnit.Framework.FixtureLifeCycleAttribute(NUnit.Framework.LifeCycle.InstancePerTestCase)]
-    public partial class LoginFeature
+    public partial class UIFeatureFeature
     {
         
         private global::Reqnroll.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Login", "A short summary of the feature", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags);
+        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "UI Feature", "A short summary of the feature", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags);
         
 #line 1 "UIActions.feature"
 #line hidden
@@ -83,14 +83,14 @@ namespace SeleniumAndPlaywright.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Valid login")]
+        [NUnit.Framework.DescriptionAttribute("UIActions")]
         [NUnit.Framework.CategoryAttribute("tag1")]
-        public async System.Threading.Tasks.Task ValidLogin()
+        public async System.Threading.Tasks.Task UIActions()
         {
             string[] tagsOfScenario = new string[] {
                     "tag1"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Valid login", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("UIActions", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 6
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -109,6 +109,12 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 9
  await testRunner.ThenAsync("I Hover on to Product and Add to Cart", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 10
+ await testRunner.ThenAsync("I Remove the product from cart", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 11
+    await testRunner.ThenAsync("I Logout from website", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();

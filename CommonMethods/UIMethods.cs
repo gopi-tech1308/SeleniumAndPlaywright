@@ -70,5 +70,34 @@ namespace Selenium_PlaywrightTest.CommonMethods
                 Thread.Sleep(1000);
               
         }
+        public void RemoveItemFromCart()
+        {
+            Thread.Sleep(1000);
+            driver.FindElement(By.XPath(UIConfig.Configs.CartXpath)).Click();
+            Thread.Sleep(1000);
+            driver.FindElement(By.XPath(UIConfig.Configs.DeleteXpath)).Click();
+            Thread.Sleep(1000);
+            driver.FindElement(By.XPath(UIConfig.Configs.DeleteConfirmOkXpath)).Click();
+            Thread.Sleep(2000);
+
+            try
+            {
+                driver.FindElement(By.XPath(UIConfig.Configs.CartXpath)).Click();
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
+                wait.Until(d => d.FindElement(By.XPath(UIConfig.Configs.CartCountXpath)).Enabled);
+                Console.WriteLine("cart is Empty");
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("Cart is not empty"+ex.Message);
+            }
+        }
+        public void Logout()
+        {
+            driver.FindElement(By.XPath(UIConfig.Configs.NavBarXpath)).Click();
+            //driver.FindElement(By.XPath(UIConfig.Configs.AccountXpath)).Click();
+            driver.FindElement(By.XPath(UIConfig.Configs.SignoutXpath)).Click();
+            Thread.Sleep(5000);
+        }
     }
 }
