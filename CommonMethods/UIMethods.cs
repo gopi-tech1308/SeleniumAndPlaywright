@@ -52,8 +52,6 @@ namespace Selenium_PlaywrightTest.CommonMethods
         {
             Thread.Sleep(2000);
             ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollBy(0, 1300);");
-            //Actions actions = new Actions(driver);
-            //actions.SendKeys(Keys.PageDown).Perform();
 
         }
         public void HoverAndAddTocart()
@@ -95,7 +93,6 @@ namespace Selenium_PlaywrightTest.CommonMethods
         public void Logout()
         {
             driver.FindElement(By.XPath(UIConfig.Configs.NavBarXpath)).Click();
-            //driver.FindElement(By.XPath(UIConfig.Configs.AccountXpath)).Click();
             driver.FindElement(By.XPath(UIConfig.Configs.SignoutXpath)).Click();
             Thread.Sleep(5000);
         }
