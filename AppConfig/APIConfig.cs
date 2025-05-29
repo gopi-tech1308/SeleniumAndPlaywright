@@ -11,6 +11,7 @@ namespace APIConfig
         public const string BaseURL = "https://restful-booker.herokuapp.com";
         public const string AUTHResource = "/auth";
         public const string BookingResource = "/booking";
+        public const string UpdateBookingResource = "/booking";
 
     }
 }
