@@ -7,6 +7,7 @@ using RestSharp;
 using Newtonsoft.Json;
 using OpenQA.Selenium;
 using APIConfig;
+using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities.ObjectModel;
 
 
 namespace Selenium_PlaywrightTest.APICommonMethods
@@ -18,9 +19,10 @@ namespace Selenium_PlaywrightTest.APICommonMethods
             var request = new RestRequest(APIConfig.Configs.AUTHResource, Method.Post);
             var client = new RestClient(APIConfig.Configs.BaseURL);
             request.AddHeader("Content-Type", "application/json");
-            var body = File.ReadAllText(@"C:\Users\gopik\Downloads\payload.txt");
+            var body = File.ReadAllText(@"C:\Users\gopik\Downloads\postpayload.txt");
             request.AddJsonBody(body);
             RestResponse response = client.Execute(request);
+            Console.WriteLine(response.StatusCode);
             Console.WriteLine(response.Content);
 
 
@@ -32,8 +34,7 @@ namespace Selenium_PlaywrightTest.APICommonMethods
             request.AddHeader("Content-Type", "application/json");
             request.AddHeader("Accept", "application/json");
             RestResponse response = client.Execute(request);
-            Console.WriteLine(response.Content);
-            //File.WriteAllText(@"C:\Users\gopik\Downloads\BookingIDs.json", response.Content);
+            File.WriteAllText(@"C:\Users\gopik\Downloads\BookingIDs.json", response.Content);
         }
         public void GetBookingIDByName()
         {
@@ -48,5 +49,34 @@ namespace Selenium_PlaywrightTest.APICommonMethods
 
 
         }
+        public void CreateBooking()
+        {
+            var request = new RestRequest(APIConfig.Configs.BookingResource, Method.Post);
+            var client = new RestClient(APIConfig.Configs.BaseURL);
+            request.AddHeader("Content-Type", "application/json");
+            request.AddHeader("Accept", "application/json");
+            var payload = File.ReadAllText(@"C:\Users\gopik\Downloads\payload.txt");
+            request.AddJsonBody(payload);
+            RestResponse response = client.Execute(request);
+            File.WriteAllText(@"C:\Users\gopik\Downloads\CreatedBooking.txt", response.Content);
+
+        }
+        public void UpdateBooking()
+        {
+            var request = new RestRequest(APIConfig.Configs.UpdateBookingResource, Method.Put);
+            var client = new RestClient(APIConfig.Configs.BaseURL);
+            request.AddHeader("Content-Type", "application/json");
+            request.AddHeader("Accept", "application/json");
+            request.AddHeader("Cookie", "9e396b27748f342");
+            request.AddParameter("id", 1);
+            var payload = File.ReadAllText(@"C:\Users\gopik\Downloads\UpdateBooking.txt");
+            request.AddJsonBody(payload);
+            RestResponse response = client.Execute(request);
+            File.WriteAllText(@"C:\Users\gopik\Downloads\UpdatedBookingDetails.txt", response.Content);
+            Console.WriteLine(response.Content);
+
+
+        }
+
     }
 }

@@ -71,12 +71,13 @@ namespace Selenium_PlaywrightTest.CommonMethods
         public void RemoveItemFromCart()
         {
             Thread.Sleep(1000);
+
             driver.FindElement(By.XPath(UIConfig.Configs.CartXpath)).Click();
             Thread.Sleep(1000);
             driver.FindElement(By.XPath(UIConfig.Configs.DeleteXpath)).Click();
             Thread.Sleep(1000);
             driver.FindElement(By.XPath(UIConfig.Configs.DeleteConfirmOkXpath)).Click();
-            Thread.Sleep(2000);
+            
 
             try
             {
@@ -93,8 +94,19 @@ namespace Selenium_PlaywrightTest.CommonMethods
         public void Logout()
         {
             driver.FindElement(By.XPath(UIConfig.Configs.NavBarXpath)).Click();
-            driver.FindElement(By.XPath(UIConfig.Configs.SignoutXpath)).Click();
-            Thread.Sleep(5000);
+            
+            try
+            {
+                driver.FindElement(By.XPath(UIConfig.Configs.SignoutXpath)).Click();
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
+                wait.Until(d => d.Url == UIConfig.Configs.LogoutURL);
+                Assert.That(driver.Url, Is.EqualTo(UIConfig.Configs.LogoutURL), "Logged out Successfully");
+
+            }
+            catch
+            {
+                throw new Exception("Failed to Logout");
+            }
         }
     }
 }

@@ -110,6 +110,12 @@ this.ScenarioInitialize(scenarioInfo);
 #line 9
  await testRunner.ThenAsync("I will get BookingID by Name", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
+#line 10
+ await testRunner.ThenAsync("I will Create a Booking", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 11
+ await testRunner.ThenAsync("I will Update a Boooking", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
             }
             await this.ScenarioCleanupAsync();
         }

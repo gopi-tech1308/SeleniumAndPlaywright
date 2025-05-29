@@ -33,5 +33,15 @@ namespace Selenium_PlaywrightTest.StepDefinitions
         {
             AP.GetBookingIDByName();
         }
+        [Then(@"I will Create a Booking")]
+        public void IWillCreateABooking()
+        {
+            AP.CreateBooking();
+        }
+        [Then(@"I will Update a Boooking")]
+        public void IWillUpdateABooking()
+        {
+            AP.UpdateBooking();
+        }
     }
 }
