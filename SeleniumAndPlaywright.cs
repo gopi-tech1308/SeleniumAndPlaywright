@@ -33,13 +33,16 @@ namespace Selenium_PlaywrightTest
             using var playwright = await Playwright.CreateAsync();
             await using var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = false});
            
-            var context = await browser.NewContextAsync();
+            var context = await browser.NewContextAsync(new BrowserNewContextOptions { ViewportSize = null });
             var page = await context.NewPageAsync();
             await page.GotoAsync("https://www.youtube.com/");
             await page.ClickAsync("//div[contains(@class,'ytSearchboxComponentInputBox')]//form//input[contains(@name,'search_query')]");
             await page.FillAsync("//div[contains(@class,'ytSearchboxComponentInputBox')]//form//input[contains(@name,'search_query')]", "SVSC");
             await page.Keyboard.PressAsync("Enter");
-            await page.WaitForTimeoutAsync(9000);
+            await page.WaitForTimeoutAsync(5000);
+            await page.EvaluateAsync("window.scrollBy(0,1300)");
+            await page.Mouse.WheelAsync(0, 1300);
+            await page.ScreenshotAsync(new PageScreenshotOptions { Path = "C:\\Users\\gopik\\Downloads\\ss.png" });
             await browser.CloseAsync();
             Console.WriteLine("Browser Closed");
 
