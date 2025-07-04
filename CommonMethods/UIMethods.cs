@@ -15,6 +15,7 @@ using OpenQA.Selenium.Support.UI;
 using Microsoft.Playwright;
 using System.Security.Cryptography.X509Certificates;
 using OpenQA.Selenium.Interactions;
+using SeleniumExtras.WaitHelpers;
 using System.Xml;
 
 
@@ -37,6 +38,7 @@ namespace Selenium_PlaywrightTest.CommonMethods
             {
                 driver.FindElement(By.XPath(UIConfig.Configs.LgnBtnXpath)).Click();
                 WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
+                wait.IgnoreExceptionTypes(typeof(StaleElementReferenceException));
                 wait.Until(d => d.Url == UIConfig.Configs.PostLoginURL);
                 Assert.That(driver.Url, Is.EqualTo(UIConfig.Configs.PostLoginURL), "User is redirected correctly !");
 
@@ -50,40 +52,45 @@ namespace Selenium_PlaywrightTest.CommonMethods
         }
         public void ScrollDown()
         {
-            Thread.Sleep(2000);
+
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
             ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollBy(0, 1300);");
 
         }
         public void HoverAndAddTocart()
         {
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(1));
+                wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(UIConfig.Configs.SizeXpath))).Click();
             
-                driver.FindElement(By.XPath(UIConfig.Configs.SizeXpath)).Click();
-                Thread.Sleep(1000);
-                driver.FindElement(By.XPath(UIConfig.Configs.ColorXpath)).Click();
-                Thread.Sleep(1000);
-                Actions actions = new Actions(driver);
+                WebDriverWait wait2 = new WebDriverWait(driver, TimeSpan.FromSeconds(1));
+                wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(UIConfig.Configs.ColorXpath))).Click();
+            
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1);
+            Actions actions = new Actions(driver);
                 IWebElement FirstProduct = driver.FindElement(By.XPath(UIConfig.Configs.HoverFirstProdXpath));
                 actions.MoveToElement(FirstProduct).Perform();
                 driver.FindElement(By.XPath(UIConfig.Configs.AddcartBtnXpath)).Click();
-                Thread.Sleep(1000);
-              
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
+
+
         }
         public void RemoveItemFromCart()
         {
-            Thread.Sleep(1000);
-
-            driver.FindElement(By.XPath(UIConfig.Configs.CartXpath)).Click();
-            Thread.Sleep(1000);
-            driver.FindElement(By.XPath(UIConfig.Configs.DeleteXpath)).Click();
-            Thread.Sleep(1000);
-            driver.FindElement(By.XPath(UIConfig.Configs.DeleteConfirmOkXpath)).Click();
+           
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(UIConfig.Configs.CartXpath))).Click();
+            WebDriverWait wait2 = new WebDriverWait(driver, TimeSpan.FromSeconds(1));
+            wait2.Until(ExpectedConditions.ElementIsVisible(By.XPath(UIConfig.Configs.DeleteXpath))).Click();
+            WebDriverWait wait3 = new WebDriverWait(driver, TimeSpan.FromSeconds(1));
+            wait3.Until(ExpectedConditions.ElementIsVisible(By.XPath(UIConfig.Configs.DeleteConfirmOkXpath))).Click();
+            
             
 
             try
             {
                 driver.FindElement(By.XPath(UIConfig.Configs.CartXpath)).Click();
-                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
-                wait.Until(d => d.FindElement(By.XPath(UIConfig.Configs.CartCountXpath)).Enabled);
+                WebDriverWait wait4 = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
+                wait4.Until(d => d.FindElement(By.XPath(UIConfig.Configs.CartCountXpath)).Enabled);
                 Console.WriteLine("cart is Empty");
             }
             catch(Exception ex)
@@ -93,13 +100,16 @@ namespace Selenium_PlaywrightTest.CommonMethods
         }
         public void Logout()
         {
-            driver.FindElement(By.XPath(UIConfig.Configs.NavBarXpath)).Click();
+            
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
+            wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(UIConfig.Configs.NavBarXpath))).Click();
+           
             
             try
             {
                 driver.FindElement(By.XPath(UIConfig.Configs.SignoutXpath)).Click();
-                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
-                wait.Until(d => d.Url == UIConfig.Configs.LogoutURL);
+                WebDriverWait wait2 = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
+                wait2.Until(d => d.Url == UIConfig.Configs.LogoutURL);
                 Assert.That(driver.Url, Is.EqualTo(UIConfig.Configs.LogoutURL), "Logged out Successfully");
 
             }
