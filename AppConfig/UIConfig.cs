@@ -10,6 +10,8 @@ namespace UIConfig
     {
         public const string URL = "https://magento.softwaretestingboard.com/#contentarea";
         public const string LogoutURL = "https://magento.softwaretestingboard.com/customer/account/logoutSuccess/";
+        public const string username = "gajala@dongahook.com";
+        public const string password = "Secret_Gajala";
         public const string PostLoginURL = "https://magento.softwaretestingboard.com/";
         public const string PreSignInBtn = "//div[contains(@class,'page-wrapper')]//ul[contains(@class,'header links')]/li[contains(@class,'authorization-link')]//a[contains(text(),'        Sign In    ')]";
         public const string usernameXpath = "//input[contains(@name,'login[username]')]";

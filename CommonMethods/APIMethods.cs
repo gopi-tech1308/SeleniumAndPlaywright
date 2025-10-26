@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RestSharp;
-using Newtonsoft.Json;
-using OpenQA.Selenium;
+﻿using RestSharp;
 using APIConfig;
-using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities.ObjectModel;
 
 
 namespace Selenium_PlaywrightTest.APICommonMethods
@@ -16,8 +8,8 @@ namespace Selenium_PlaywrightTest.APICommonMethods
     {
         public void POSTAuthToken()
         {
-            var request = new RestRequest(APIConfig.Configs.AUTHResource, Method.Post);
-            var client = new RestClient(APIConfig.Configs.BaseURL);
+            var request = new RestRequest(Configs.AUTHResource, Method.Post);
+            var client = new RestClient(Configs.BaseURL);
             request.AddHeader("Content-Type", "application/json");
             var body = File.ReadAllText(@"C:\Users\gopik\Downloads\postpayload.txt");
             request.AddJsonBody(body);
@@ -29,8 +21,8 @@ namespace Selenium_PlaywrightTest.APICommonMethods
         }
        public void GetBookingIds()
         {
-            var request = new RestRequest(APIConfig.Configs.BookingResource, Method.Get);
-            var client = new RestClient(APIConfig.Configs.BaseURL);
+            var request = new RestRequest(Configs.BookingResource, Method.Get);
+            var client = new RestClient(Configs.BaseURL);
             request.AddHeader("Content-Type", "application/json");
             request.AddHeader("Accept", "application/json");
             RestResponse response = client.Execute(request);
@@ -38,8 +30,8 @@ namespace Selenium_PlaywrightTest.APICommonMethods
         }
         public void GetBookingIDByName()
         {
-            var request = new RestRequest(APIConfig.Configs.BookingResource, Method.Get);
-            var client = new RestClient(APIConfig.Configs.BaseURL);
+            var request = new RestRequest(Configs.BookingResource, Method.Get);
+            var client = new RestClient(Configs.BaseURL);
             request.AddHeader("Content-Type", "application/json");
             request.AddHeader("Accept", "application/json");
             request.AddParameter("firstname", "sally");
@@ -51,8 +43,8 @@ namespace Selenium_PlaywrightTest.APICommonMethods
         }
         public void CreateBooking()
         {
-            var request = new RestRequest(APIConfig.Configs.BookingResource, Method.Post);
-            var client = new RestClient(APIConfig.Configs.BaseURL);
+            var request = new RestRequest(Configs.BookingResource, Method.Post);
+            var client = new RestClient(Configs.BaseURL);
             request.AddHeader("Content-Type", "application/json");
             request.AddHeader("Accept", "application/json");
             var payload = File.ReadAllText(@"C:\Users\gopik\Downloads\payload.txt");
@@ -63,8 +55,8 @@ namespace Selenium_PlaywrightTest.APICommonMethods
         }
         public void UpdateBooking()
         {
-            var request = new RestRequest(APIConfig.Configs.UpdateBookingResource, Method.Put);
-            var client = new RestClient(APIConfig.Configs.BaseURL);
+            var request = new RestRequest(Configs.UpdateBookingResource, Method.Put);
+            var client = new RestClient(Configs.BaseURL);
             request.AddHeader("Content-Type", "application/json");
             request.AddHeader("Accept", "application/json");
             request.AddHeader("Cookie", "9e396b27748f342");

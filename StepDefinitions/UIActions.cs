@@ -1,14 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+﻿
 using Reqnroll;
-using ReqnrollTests;
-using Selenium_PlaywrightTest.Hooks;
+
 using Selenium_PlaywrightTest.CommonMethods;
 
 namespace ReqnrollTests.StepDefinitions

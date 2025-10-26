@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Reqnroll;
-using ReqnrollTests;
+﻿using Reqnroll;
 using Selenium_PlaywrightTest.APICommonMethods;
-using Selenium_PlaywrightTest.CommonMethods;
+
 
 namespace Selenium_PlaywrightTest.StepDefinitions
 {

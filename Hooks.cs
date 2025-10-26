@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using Reqnroll;
-using ReqnrollTests;
 
 namespace Selenium_PlaywrightTest.Hooks
 {
@@ -16,10 +11,15 @@ namespace Selenium_PlaywrightTest.Hooks
         public static IWebDriver driver;
 
         [BeforeScenario]
-        public void Setup()
+        public static void Setup()
         {
-            driver = new ChromeDriver();
-            driver.Manage().Window.Maximize();
+            if(driver == null)
+            {
+                driver = new ChromeDriver();
+                driver.Manage().Window.Maximize();
+
+            }
+            
         }
 
         [AfterScenario]
